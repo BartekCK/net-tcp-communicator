@@ -11,9 +11,17 @@
   "author": "Bartlomiej Kotarski",
   "license": "ISC",
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/faker": "^5.5.3",
     "@types/node": "^15.0.1",
+    "@types/uuid": "^8.3.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "faker": "^5.5.3",
+    "uuid": "^8.3.2"
   }
 }
