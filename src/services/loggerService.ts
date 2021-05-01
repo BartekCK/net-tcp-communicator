@@ -1,9 +1,12 @@
-import { greenBright, red, yellow } from 'chalk';
+import { greenBright, red, yellow, magenta } from 'chalk';
 
-const log = {
+export const log = {
     info: (msg: string) => console.log(greenBright(msg)),
     console: (msg: string) => console.log(yellow(msg)),
     error: (msg: string) => console.log(red(msg)),
 };
 
-export default log;
+export const clientMsg = {
+    red: (msg: string) => red(msg),
+    magenta: (msg: string) => magenta(msg),
+};

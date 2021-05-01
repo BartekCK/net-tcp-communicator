@@ -1,27 +1,35 @@
 import { Server, Socket } from 'net';
 import { v4 as uuidv4 } from 'uuid';
-
 import { Buffer } from 'buffer';
 
 // services
-import log from './services/loggerService';
+import { log, clientMsg } from './services/loggerService';
 import nickCreatorService from './services/nickCreatorService';
+
+// types
+import { IUser } from './types';
 
 const PORT: number = 8080;
 const HOST: string = '127.0.0.1';
 
 const server: Server = new Server();
 
-let users: any[] = [];
+let users: IUser[] = [];
 
 server.on('connection', (socket: Socket) => {
-    const user = { id: uuidv4(), username: nickCreatorService(users.map((el) => el.username)) };
+    const user: IUser = { id: uuidv4(), username: nickCreatorService(users.map((el) => el.username)), socket };
     users.push(user);
+
     log.console(`New client connected ${user.username}`);
-    socket.write(`Hello nice to meet you ${user.username}\n`);
+    socket.write(clientMsg.red(`Hello nice to meet you ${user.username}\n`));
 
     socket.on('data', (data: Buffer) => {
-        console.log('I receive data', data.toString('utf8'));
+        const message: string = data.toString('utf8');
+        users.forEach((el) => {
+            if (el.id !== user.id) {
+                el.socket.write(`${clientMsg.magenta(user.username)}: ${message}`);
+            }
+        });
     });
 
     socket.on('close', () => {
