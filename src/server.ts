@@ -7,7 +7,6 @@ import StateService from './services/StateService';
 import { log } from './utils/loggerService';
 
 const PORT: number = 8080;
-const HOST: string = 'localhost';
 
 const server: Server = new Server();
 
@@ -23,4 +22,4 @@ server.on('connection', (socket: Socket) => {
     });
 });
 
-server.listen(PORT, HOST, () => log.info(`Server start listen on ${PORT} port`));
+server.listen(PORT, () => log.info(`Server start listen on ${PORT} port`));

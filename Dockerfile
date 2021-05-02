@@ -11,5 +11,4 @@ WORKDIR /app
 COPY --from=build /app/build/ ./src
 ADD package.json .
 RUN npm i --only=production
-EXPOSE 8080
 CMD ["node", "src/server.js"]
