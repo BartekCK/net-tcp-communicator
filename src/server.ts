@@ -7,7 +7,7 @@ import StateService from './services/StateService';
 import { log } from './utils/loggerService';
 
 const PORT: number = 8080;
-const HOST: string = '127.0.0.1';
+const HOST: string = 'localhost';
 
 const server: Server = new Server();
 
