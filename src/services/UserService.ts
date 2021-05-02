@@ -25,7 +25,7 @@ export class UserService {
     sendBroadcastMessage(broadcaster: User, msg: string): void {
         this.userRepo.getAll().forEach((user) => {
             if (broadcaster.id !== user.id) {
-                user.socket.write(`${clientMsg.magenta(user.username)}: ${msg}`);
+                user.socket.write(`${clientMsg.magenta(broadcaster.username)}: ${msg}`);
             }
         });
     }
